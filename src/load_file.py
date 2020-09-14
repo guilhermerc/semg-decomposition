@@ -4,7 +4,7 @@
 import numpy as np
 from scipy.io import loadmat
 
-mat_file = loadmat('samples/LAE_QEO_cut.mat')
+mat_file = loadmat('../samples/LAE_QEO_cut.mat')
 # Check LAE_QEO_cut_tree.md for file structure description
 
 emg_struct = mat_file['QEO_cut'][0][0]['EMG'][0][0]
