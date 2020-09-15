@@ -1,6 +1,6 @@
 # semg-decomposition
 
-## Progress tracking
+#### Progress tracking
 
 The following algorithm is described on Negro et al. (J. Neural Engineering,
 2015) - page 3:
