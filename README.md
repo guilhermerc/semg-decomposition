@@ -5,6 +5,7 @@
 The following algorithm is described on Negro et al. (J. Neural Engineering,
 2015) - page 3:
 
+- [ ] 0. Extend the observations x by a R factor
 - [x] 1. Subtract the mean from the observations x
 - [x] 2. Whiten x
 - [ ] 3. Initialize the matrix B to empty matrix
