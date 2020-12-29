@@ -22,3 +22,14 @@ The following algorithm is described on Negro et al. (J. Neural Engineering,
           d. Set n = n + 1
     - [x] 3. End while
     - (...)
+    - [x] 4. Initialize CoV_{n - 1} and CoV\_n
+    - [x] 5. While CoV\_n < CoV_{n - 1}
+          a. Estimate the i-th source
+          b. Estimate the pulse train PT_n with peak detection and K-means class
+          c. Set CoV_{n - 1} = CoV_n and calculate CoV_n of PT_n
+          d. w_i(n + 1) = (1/J) \sum_{J = 1}^{J} z(t_j)
+          e. Set n = n + 1
+      End while CoV(n) < CoV(n - 1)
+    - [x] 6. If SIL > 0.9
+          a. Accept the source estimate
+          b. Add w_i to the matrix B
