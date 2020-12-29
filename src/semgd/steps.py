@@ -1,7 +1,7 @@
 import numpy as np
 
 def extend(x, R):
-    "0. Extend the observations x by a R factor"
+    "Extend the observations x by a R factor"
     m, D_r = x.shape
 
     # Builts the extended observations matrix ('x_') by slicing an auxiliary
@@ -17,12 +17,12 @@ def extend(x, R):
     return x_
 
 def subtract_mean(x):
-    "1. Subtract the mean from the observations x"
+    "Subtract the mean from the observations x"
     for channel in x:
         channel[...] = channel - np.mean(channel)
 
 def whiten(x):
-    "2. Whiten x"
+    "Whiten x"
     d, U = np.linalg.eigh(np.cov(x))
     D = np.diag(d)
 
