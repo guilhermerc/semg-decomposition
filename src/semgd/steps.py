@@ -26,6 +26,12 @@ def whiten(x):
     d, U = np.linalg.eigh(np.cov(x))
     D = np.diag(d)
 
+    # Regularization
+    reg_fact = d[:round(len(d)/2)].mean()
+
+    for i in range(round(len(d)/2)):
+        d[i] = reg_fact
+
     # W = UD^{-1/2}U.T
     W = np.dot(U, np.dot(np.sqrt(np.linalg.inv(D)), U.T))
 
