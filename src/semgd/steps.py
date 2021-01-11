@@ -134,7 +134,7 @@ def refinement(z, w_i, TH_SIL, max_iter):
         # e. Set n = n + 1
         n = n + 1
 
-        if cov_curr > cov_last or n > max_iter:
+        if cov_curr < cov_last or n > max_iter:
             break
 
     # End while CoV(n) < CoV(n - 1)
