@@ -8,8 +8,8 @@ The following algorithm is described on Negro et al. (J. Neural Engineering,
 - [x] Extend the observations x by a R factor
 - [x] Subtract the mean from the observations x
 - [x] Whiten x
-- [ ] Initialize the matrix B to empty matrix
-- [ ] For i = 1, 2, ..., M repeat:
+- [x] Initialize the matrix B to empty matrix
+- [x] For i = 1, 2, ..., M repeat:
     - [x] 1. Initialize the vector w\_i(0) and w\_i(-1)
     - [x] 2. While |w\_i(n)^{T}w\_i(n - 1) - 1| < Tolx
           a. Fixed point algorithm
@@ -21,7 +21,6 @@ The following algorithm is described on Negro et al. (J. Neural Engineering,
           w_i(n) = w_i(n)/||w_i(n)||
           d. Set n = n + 1
     - [x] 3. End while
-    - (...)
     - [x] 4. Initialize CoV_{n - 1} and CoV\_n
     - [x] 5. While CoV\_n < CoV_{n - 1}
           a. Estimate the i-th source
@@ -33,3 +32,4 @@ The following algorithm is described on Negro et al. (J. Neural Engineering,
     - [x] 6. If SIL > 0.9
           a. Accept the source estimate
           b. Add w_i to the matrix B
+      End for loop

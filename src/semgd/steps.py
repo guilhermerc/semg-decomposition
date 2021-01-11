@@ -155,3 +155,31 @@ def refinement(z, w_i, TH_SIL, max_iter):
         w_i = np.zeros_like(w_i)
 
     return w_i
+
+def decomposition(x, R, M, Tolx, TH_SIL, max_iter):
+
+    ##np.savetxt("../samples/test/raw.csv", x, delimiter=",") #
+
+    x = extend(x, R)
+    subtract_mean(x)
+    ##np.savetxt("../samples/test/x.csv", x, delimiter=",") #
+    ##np.savetxt("../samples/test/covx.csv", np.cov(x), delimiter=",") #
+
+    z = whiten(x)
+    ##np.savetxt("../samples/test/z.csv", z, delimiter=",")
+    ##np.savetxt("../samples/test/covz.csv", np.cov(z), delimiter=",")
+
+    m, _ = z.shape
+    # Initialize the matrix B to empty matrix
+    B = np.zeros((m, m))
+
+    # For i = 1, 2, ..., M repeat:
+    for i in range(M):
+        w = separation(z, B, Tolx, max_iter)
+        B[:i] = refinement(z, w, TH_SIL, max_iter, i)
+    # End for loop
+
+    ##np.savetxt("../samples/test/B.csv", B, delimiter=",")
+    ##np.savetxt("../samples/test/s.csv", s, delimiter=",")
+
+    return
