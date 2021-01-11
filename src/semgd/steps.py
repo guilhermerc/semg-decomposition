@@ -55,7 +55,7 @@ def separation(z, B, Tolx, max_iter):
 
         # a. Fixed point algorithm
         # w_i(n) = E{zg[w_i(n - 1)^{T}z]} - Aw_i(n - 1)
-        # with A = E{g'[w_i(n - 1)^{T}z}
+        # with A = E{g'[w_i(n - 1)^{T}z]}
         A = g_der(np.dot(w_old.T, z)).mean()
         w_new = (z*g(np.dot(w_old.T, z))).mean(axis=1) - A*w_old
 

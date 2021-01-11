@@ -14,7 +14,7 @@ The following algorithm is described on Negro et al. (J. Neural Engineering,
     - [x] 2. While |w\_i(n)^{T}w\_i(n - 1) - 1| < Tolx
           a. Fixed point algorithm
           w_i(n) = E{zg[w_i(n - 1)^{T}z]} - Aw_i(n - 1)
-          with A = E{g'[w_i(n - 1)^{T}z}
+          with A = E{g'[w_i(n - 1)^{T}z]}
           b. Orthogonalization
           w_i(n) = w_i(n) - BB^{T}w_i(n)
           c. Normalization
