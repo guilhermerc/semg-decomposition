@@ -1,5 +1,9 @@
 # semg-decomposition
 
+#### GUI on jupyter notebook
+
+![semg-ui](https://user-images.githubusercontent.com/22827202/111390696-ed077180-8691-11eb-88db-2b10dd2ed326.png)
+
 #### Progress tracking
 
 The following algorithm is described on Negro et al. (J. Neural Engineering,
