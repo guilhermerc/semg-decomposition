@@ -1,7 +1,9 @@
 import numpy as np
+import pandas as pd
 from scipy.signal import find_peaks
 from scipy.stats import variation
 from sklearn.cluster import KMeans
+
 
 from .spars_meas_func import g, g_der
 
@@ -77,7 +79,7 @@ def separation(z, B, Tolx, max_iter):
     # 3. End while
     return w_new
 
-def refinement(z, w_i, TH_SIL, max_iter):
+def refinement(z, w_i, TH_SIL, max_iter, i, PTs_loc):
     "Steps 4, 5 and 6"
     # 4. Initialize CoV_{n - 1} and CoV_n
     cov_curr = np.random.rand(1)
@@ -153,10 +155,16 @@ def refinement(z, w_i, TH_SIL, max_iter):
     # b. Add w_i to the matrix B
     if SIL < TH_SIL:
         w_i = np.zeros_like(w_i)
+    else:
+        print("Source extracted on iteration " + str(i) + "!")
+        np.savetxt(PTs_loc + "PT_" + str(i) + ".csv", PT_n, delimiter=",")
 
     return w_i
 
-def decomposition(x, R, M, Tolx, TH_SIL, max_iter):
+def decomposition(x_loc, PTs_loc, R, M, Tolx, TH_SIL, max_iter):
+
+    x = np.array(pd.read_csv(x_loc, header=None))
+    print("Observations matrix read from .csv!")
 
     ##np.savetxt("../samples/test/raw.csv", x, delimiter=",") #
 
@@ -166,6 +174,7 @@ def decomposition(x, R, M, Tolx, TH_SIL, max_iter):
     ##np.savetxt("../samples/test/covx.csv", np.cov(x), delimiter=",") #
 
     z = whiten(x)
+    print("Observations extended, centered and whitened!")
     ##np.savetxt("../samples/test/z.csv", z, delimiter=",")
     ##np.savetxt("../samples/test/covz.csv", np.cov(z), delimiter=",")
 
@@ -176,8 +185,10 @@ def decomposition(x, R, M, Tolx, TH_SIL, max_iter):
     # For i = 1, 2, ..., M repeat:
     for i in range(M):
         w = separation(z, B, Tolx, max_iter)
-        B[:i] = refinement(z, w, TH_SIL, max_iter, i)
+        B[:i] = refinement(z, w, TH_SIL, max_iter, i, PTs_loc)
     # End for loop
+
+    print("Decomposition finished!")
 
     ##np.savetxt("../samples/test/B.csv", B, delimiter=",")
     ##np.savetxt("../samples/test/s.csv", s, delimiter=",")
