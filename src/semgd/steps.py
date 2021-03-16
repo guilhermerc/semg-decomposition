@@ -4,7 +4,6 @@ from scipy.signal import find_peaks
 from scipy.stats import variation
 from sklearn.cluster import KMeans
 
-
 from .spars_meas_func import g, g_der
 
 def extend(x, R):
@@ -166,17 +165,11 @@ def decomposition(x_loc, PTs_loc, R, M, Tolx, TH_SIL, max_iter):
     x = np.array(pd.read_csv(x_loc, header=None))
     print("Observations matrix read from .csv!")
 
-    ##np.savetxt("../samples/test/raw.csv", x, delimiter=",") #
-
     x = extend(x, R)
     subtract_mean(x)
-    ##np.savetxt("../samples/test/x.csv", x, delimiter=",") #
-    ##np.savetxt("../samples/test/covx.csv", np.cov(x), delimiter=",") #
 
     z = whiten(x)
     print("Observations extended, centered and whitened!")
-    ##np.savetxt("../samples/test/z.csv", z, delimiter=",")
-    ##np.savetxt("../samples/test/covz.csv", np.cov(z), delimiter=",")
 
     m, _ = z.shape
     # Initialize the matrix B to empty matrix
@@ -189,8 +182,5 @@ def decomposition(x_loc, PTs_loc, R, M, Tolx, TH_SIL, max_iter):
     # End for loop
 
     print("Decomposition finished!")
-
-    ##np.savetxt("../samples/test/B.csv", B, delimiter=",")
-    ##np.savetxt("../samples/test/s.csv", s, delimiter=",")
 
     return
